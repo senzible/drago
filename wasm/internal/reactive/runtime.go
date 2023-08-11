@@ -16,10 +16,10 @@ func NewRuntime() *Runtime {
 	}
 }
 
-func CreateSignal[T any](rt *Runtime, initial T) TypedSignal[T] {
+func CreateSignal[T any](rt *Runtime, initial T) Signal[T] {
 	id := SignalId(len(rt.signalValues))
 	rt.signalValues = append(rt.signalValues, initial)
-	return TypedSignal[T]{rt, id}
+	return Signal[T]{rt, id}
 }
 
 func (rt *Runtime) CreateEffect(f func()) {
@@ -46,12 +46,12 @@ func (rt *Runtime) runEffect(id EffectId) {
 type SignalId int
 type EffectId int
 
-type TypedSignal[T any] struct {
+type Signal[T any] struct {
 	*Runtime
 	SignalId
 }
 
-func (s *TypedSignal[T]) Get() T {
+func (s *Signal[T]) Get() T {
 	//get the value
 	val := s.Runtime.signalValues[s.SignalId]
 
@@ -66,7 +66,7 @@ func (s *TypedSignal[T]) Get() T {
 	return val.(T)
 }
 
-func (s *TypedSignal[T]) Set(v T) {
+func (s *Signal[T]) Set(v T) {
 	//set the value
 	s.Runtime.signalValues[s.SignalId] = v
 
