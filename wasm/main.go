@@ -27,9 +27,9 @@ func main() {
 	body.Call("appendChild", dec)
 
 	rt := reactive.NewRuntime()
-	count := reactive.CreateSignal(rt, 0)
+	count := reactive.NewSignal(rt, 0)
 
-	rt.CreateEffect(func() {
+	rt.NewEffect(func() {
 		p.Set("textContent", fmt.Sprintf("Count: %d", count.Get()))
 	})
 

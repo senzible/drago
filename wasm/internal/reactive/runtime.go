@@ -16,13 +16,13 @@ func NewRuntime() *Runtime {
 	}
 }
 
-func CreateSignal[T any](rt *Runtime, initial T) Signal[T] {
+func NewSignal[T any](rt *Runtime, initial T) Signal[T] {
 	id := SignalId(len(rt.signalValues))
 	rt.signalValues = append(rt.signalValues, initial)
 	return Signal[T]{rt, id}
 }
 
-func (rt *Runtime) CreateEffect(f func()) {
+func (rt *Runtime) NewEffect(f func()) {
 	effectId := EffectId(len(rt.effects))
 	rt.effects = append(rt.effects, f)
 
