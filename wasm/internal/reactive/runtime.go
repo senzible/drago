@@ -16,12 +16,6 @@ func NewRuntime() *Runtime {
 	}
 }
 
-func (rt *Runtime) CreateSignal(initial any) Signal {
-	id := SignalId(len(rt.signalValues))
-	rt.signalValues = append(rt.signalValues, initial)
-	return Signal{rt, id}
-}
-
 func CreateSignal[T any](rt *Runtime, initial T) TypedSignal[T] {
 	id := SignalId(len(rt.signalValues))
 	rt.signalValues = append(rt.signalValues, initial)
@@ -52,11 +46,6 @@ func (rt *Runtime) runEffect(id EffectId) {
 type SignalId int
 type EffectId int
 
-type Signal struct {
-	*Runtime
-	SignalId
-}
-
 type TypedSignal[T any] struct {
 	*Runtime
 	SignalId
@@ -78,33 +67,6 @@ func (s *TypedSignal[T]) Get() T {
 }
 
 func (s *TypedSignal[T]) Set(v T) {
-	//set the value
-	s.Runtime.signalValues[s.SignalId] = v
-
-	//notify subscribers
-	for _, effectId := range s.Runtime.signalSubscribers[s.SignalId] {
-		s.Runtime.runEffect(effectId)
-	}
-}
-
-func (s *Signal) Get() any {
-	//get the value
-	val := s.Runtime.signalValues[s.SignalId]
-
-	//if there is a running effect, add it to the subscribers
-	//only if it is not already subscribed
-	if rt := s.Runtime; rt.runningEffect != nil {
-		if _, ok := rt.signalSubscribers[s.SignalId]; !ok {
-			//append the effect to the subscribers
-			rt.signalSubscribers[s.SignalId] = append(rt.signalSubscribers[s.SignalId], *rt.runningEffect)
-		}
-	}
-
-	//return value
-	return val
-}
-
-func (s *Signal) Set(v any) {
 	//set the value
 	s.Runtime.signalValues[s.SignalId] = v
 
