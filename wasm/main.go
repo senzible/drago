@@ -1,7 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"syscall/js"
+
+	"github.com/senzible/drago/wasm/internal/reactive"
 )
 
 type Element struct {
@@ -41,6 +44,20 @@ func (e Element) child(child Element) Element {
 	return e
 }
 
+func (e Element) dyn_text(rt *reactive.Runtime, fn func() string) Element {
+	window := js.Global()
+	doc := window.Get("document")
+	textNode := doc.Call("createTextNode", "")
+	e.Call("appendChild", textNode)
+
+	rt.NewEffect(func() {
+		value := fn()
+		textNode.Set("textContent", value)
+	})
+
+	return e
+}
+
 func Mount(root Element) {
 	window := js.Global()
 	doc := window.Get("document")
@@ -49,50 +66,39 @@ func Mount(root Element) {
 	body.Call("appendChild", root.Value)
 }
 
+func MountFunc(fn func(rt *reactive.Runtime) Element) {
+
+	window := js.Global()
+	doc := window.Get("document")
+	body := doc.Get("body")
+
+	rt := reactive.NewRuntime()
+
+	root := fn(rt)
+	body.Call("appendChild", root.Value)
+}
+
 func main() {
 	c := make(chan struct{})
 
-	Mount(
-		NewElement("div").child(
-			NewElement("button").on("click", func() {
-				println("clicked")
-			}).attr("id", "my-button").text("Click me!"),
-		),
-	)
+	MountFunc(func(rt *reactive.Runtime) Element {
+		count := reactive.NewSignal(rt, 0)
 
-	// window := js.Global()
-	// doc := window.Get("document")
-	// body := doc.Get("body")
-
-	// p := doc.Call("createElement", "p")
-	// p.Set("textContent", "Hello, WebAssembly! Not reactive yet!")
-
-	// inc := doc.Call("createElement", "button")
-	// inc.Set("textContent", "+1")
-	// dec := doc.Call("createElement", "button")
-	// dec.Set("textContent", "-1")
-
-	// body.Call("appendChild", inc)
-	// body.Call("appendChild", p)
-	// body.Call("appendChild", dec)
-
-	// rt := reactive.NewRuntime()
-	// count := reactive.NewSignal(rt, 0)
-
-	// rt.NewEffect(func() {
-	// 	p.Set("textContent", fmt.Sprintf("Count: %d", count.Get()))
-	// })
-
-	// //add event listeners
-	// inc.Call("addEventListener", "click", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
-	// 	count.Set(count.Get() + 1)
-	// 	return nil
-	// }))
-
-	// dec.Call("addEventListener", "click", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
-	// 	count.Set(count.Get() - 1)
-	// 	return nil
-	// }))
+		return NewElement("div").
+			child(
+				NewElement("button").on("click", func() {
+					count.Set(count.Get() + 1)
+				}).attr("id", "increment").text("+1"),
+			).
+			text(" Value: ").
+			dyn_text(rt, func() string {
+				return fmt.Sprintf("%d", count.Get())
+			}).
+			child(
+				NewElement("button").on("click", func() {
+					count.Set(count.Get() - 1)
+				}).attr("id", "decrement").text("-1"))
+	})
 
 	<-c
 }
