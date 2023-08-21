@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"syscall/js"
 
 	"github.com/senzible/drago/wasm/internal/reactive"
@@ -44,7 +43,7 @@ func (e Element) child(child Element) Element {
 	return e
 }
 
-func (e Element) dyn_text(rt *reactive.Runtime, fn func() string) Element {
+func (e Element) dyn_text(rt *reactive.Runtime, fn func() js.Value) Element {
 	window := js.Global()
 	doc := window.Get("document")
 	textNode := doc.Call("createTextNode", "")
@@ -91,8 +90,9 @@ func main() {
 				}).attr("id", "increment").text("+1"),
 			).
 			text(" Value: ").
-			dyn_text(rt, func() string {
-				return fmt.Sprintf("%d", count.Get())
+			dyn_text(rt, func() js.Value {
+				//return the count as a string without the fmt package
+				return js.ValueOf(count.Get())
 			}).
 			child(
 				NewElement("button").on("click", func() {
