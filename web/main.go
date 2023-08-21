@@ -4,6 +4,8 @@ import (
 	"flag"
 	"log"
 	"net/http"
+
+	"github.com/NYTimes/gziphandler"
 )
 
 func main() {
@@ -13,5 +15,6 @@ func main() {
 
 	http.Handle("/", http.FileServer(http.Dir(*dir)))
 	log.Printf("Serving UI %s on HTTP port: %s\n", *dir, *port)
-	log.Fatal(http.ListenAndServe(":"+*port, nil))
+	log.Fatal(http.ListenAndServe(":"+*port,
+		gziphandler.GzipHandler(http.FileServer(http.Dir("")))))
 }
