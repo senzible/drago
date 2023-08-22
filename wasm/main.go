@@ -91,7 +91,6 @@ func main() {
 			).
 			text(" Value: ").
 			dyn_text(rt, func() js.Value {
-				//return the count as a string without the fmt package
 				return js.ValueOf(count.Get())
 			}).
 			child(
