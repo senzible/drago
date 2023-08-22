@@ -96,7 +96,16 @@ func main() {
 			child(
 				NewElement("button").on("click", func() {
 					count.Set(count.Get() - 1)
-				}).attr("id", "decrement").text("-1"))
+				}).attr("id", "decrement").text("-1")).
+			child(
+				NewElement("img").attr("src", "/logo-tech.svg"),
+			).
+			child(
+				NewElement("img").attr("src", "/logo-cloud.svg"),
+			).
+			child(
+				NewElement("img").attr("src", "/logo-design.svg"),
+			)
 	})
 
 	<-c
