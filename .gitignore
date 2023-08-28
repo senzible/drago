@@ -20,11 +20,5 @@
 # Go workspace file
 go.work
 
-*.wasm
-
-
-
-
-
 # Mac OS X Finder
 .DS_Store
