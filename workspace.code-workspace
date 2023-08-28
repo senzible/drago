@@ -13,6 +13,9 @@
             "path": "senzible.cloud"
         },
         {
+            "path": "senzible.cloud.wasm"
+        }
+        {
             "path": "senzible.design"
         },
         {
