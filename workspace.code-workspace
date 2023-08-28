@@ -10,6 +10,15 @@
             "path": "server"
         },
         {
+            "path": "senzible.cloud"
+        },
+        {
+            "path": "senzible.design"
+        },
+        {
+            "path": "senzible.tech"
+        },
+        {
             "path": "."
         }
     ],
