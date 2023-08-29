@@ -26,3 +26,9 @@ senzible-design:
 	cp "$(shell tinygo env TINYGOROOT)/targets/wasm_exec.js" ./senzible.design/
 	wasm-opt -Oz -o ./senzible.design/main.wasm ./senzible.design/main.wasm.tiny
 	rm ./senzible.design/main.wasm.tiny
+
+senzible-tech:
+	tinygo build -target wasm -o ./senzible.tech/main.wasm.tiny ./senzible.tech.wasm/main.go
+	cp "$(shell tinygo env TINYGOROOT)/targets/wasm_exec.js" ./senzible.tech/
+	wasm-opt -Oz -o ./senzible.tech/main.wasm ./senzible.tech/main.wasm.tiny
+	rm ./senzible.tech/main.wasm.tiny
