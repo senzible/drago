@@ -19,7 +19,13 @@
             "path": "senzible.design"
         },
         {
+            "path": "senzible.design.wasm"
+        },
+        {
             "path": "senzible.tech"
+        },
+        {
+            "path": "senzible.tech.wasm"
         },
         {
             "path": "."
