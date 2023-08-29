@@ -20,3 +20,9 @@ senzible-cloud:
 	cp "$(shell tinygo env TINYGOROOT)/targets/wasm_exec.js" ./senzible.cloud/
 	wasm-opt -Oz -o ./senzible.cloud/main.wasm ./senzible.cloud/main.wasm.tiny 
 	rm ./senzible.cloud/main.wasm.tiny
+
+senzible-design:
+	tinygo build -target wasm -o ./senzible.design/main.wasm.tiny ./senzible.design.wasm/main.go
+	cp "$(shell tinygo env TINYGOROOT)/targets/wasm_exec.js" ./senzible.design/
+	wasm-opt -Oz -o ./senzible.design/main.wasm ./senzible.design/main.wasm.tiny
+	rm ./senzible.design/main.wasm.tiny
