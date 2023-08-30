@@ -32,3 +32,5 @@ senzible-tech:
 	cp "$(shell tinygo env TINYGOROOT)/targets/wasm_exec.js" ./senzible.tech/
 	wasm-opt -Oz -o ./senzible.tech/main.wasm ./senzible.tech/main.wasm.tiny
 	rm ./senzible.tech/main.wasm.tiny
+
+senzible: senzible-cloud senzible-design senzible-tech

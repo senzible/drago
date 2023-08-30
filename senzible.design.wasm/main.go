@@ -1,18 +1,17 @@
 package main
 
 import (
-	"github.com/senzible/drago/wasm/element"
-	"github.com/senzible/drago/wasm/reactive"
+	"github.com/senzible/drago"
 )
 
 func main() {
 	c := make(chan struct{})
 
-	element.MountFunc(func(rt *reactive.Runtime) element.Element {
+	drago.MountFunc(func(rt *drago.Runtime) drago.Element {
 
-		return element.NewElement("div").
+		return drago.NewElement("div").
 			Child(
-				element.NewElement("img").Attr("src", "/logo-design.svg"),
+				drago.NewElement("img").Attr("src", "/logo-design.svg"),
 			)
 	})
 

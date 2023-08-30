@@ -1,9 +1,7 @@
-package element
+package drago
 
 import (
 	"syscall/js"
-
-	"github.com/senzible/drago/wasm/reactive"
 )
 
 type Element struct {
@@ -43,7 +41,7 @@ func (e Element) Child(child Element) Element {
 	return e
 }
 
-func (e Element) Dyn_text(rt *reactive.Runtime, fn func() js.Value) Element {
+func (e Element) Dyn_text(rt *Runtime, fn func() js.Value) Element {
 	window := js.Global()
 	doc := window.Get("document")
 	textNode := doc.Call("createTextNode", "")
@@ -65,13 +63,13 @@ func Mount(root Element) {
 	body.Call("appendChild", root.Value)
 }
 
-func MountFunc(fn func(rt *reactive.Runtime) Element) {
+func MountFunc(fn func(rt *Runtime) Element) {
 
 	window := js.Global()
 	doc := window.Get("document")
 	body := doc.Get("body")
 
-	rt := reactive.NewRuntime()
+	rt := NewRuntime()
 
 	root := fn(rt)
 	body.Call("appendChild", root.Value)

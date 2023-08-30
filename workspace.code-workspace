@@ -1,13 +1,10 @@
 {
     "folders": [
         {
-            "path": "web"
+            "path": "example/sandbox/web"
         },
         {
-            "path": "wasm"
-        },
-        {
-            "path": "server"
+            "path": "example/sandbox/wasm"
         },
         {
             "path": "senzible.cloud"
