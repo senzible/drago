@@ -10,10 +10,10 @@ tiny-wasm:
 	cp "$(shell tinygo env TINYGOROOT)/targets/wasm_exec.js" ./web/
 
 tiny-wasm-opt: 
-	tinygo build -target wasm -o ./web/main.wasm.tiny ./wasm/main.go 
-	cp "$(shell tinygo env TINYGOROOT)/targets/wasm_exec.js" ./web/
-	wasm-opt -Oz -o ./web/main.wasm ./web/main.wasm.tiny 
-	rm ./web/main.wasm.tiny
+	tinygo build -target wasm -o ./examples/sandbox/web/main.wasm.tiny ./examples/sandbox/wasm/main.go 
+	cp "$(shell tinygo env TINYGOROOT)/targets/wasm_exec.js" ./examples/sandbox/web/
+	wasm-opt -Oz -o ./examples/sandbox/web/main.wasm ./examples/sandbox/web/main.wasm.tiny 
+	rm ./examples/sandbox/web/main.wasm.tiny
 
 senzible-cloud:
 	tinygo build -target wasm -o ./senzible.cloud/main.wasm.tiny ./senzible.cloud.wasm/main.go 
