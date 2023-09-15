@@ -23,6 +23,82 @@ func (e Element) On(event string, fn func()) Element {
 	return e
 }
 
+func (e Element) Margin(margin string) Element {
+	e.Get("style").Call("setProperty", "margin", margin)
+	return e
+}
+
+func (e Element) Padding(padding string) Element {
+	e.Get("style").Call("setProperty", "padding", padding)
+	return e
+}
+
+func (e Element) Grid() Element {
+	e.Get("style").Call("setProperty", "display", "grid")
+	return e
+}
+
+func (e Element) GridTemplateColumns(columns string) Element {
+	e.Get("style").Call("setProperty", "grid-template-columns", columns)
+	return e
+}
+
+func (e Element) GridTemplateRows(rows string) Element {
+	e.Get("style").Call("setProperty", "grid-template-rows", rows)
+	return e
+}
+
+func (e Element) GridTemplateAreas(areas ...string) Element {
+	areasStr := ""
+	for _, area := range areas {
+		areasStr += "'" + area + "' "
+	}
+	areasStr = areasStr[:len(areasStr)-1]
+
+	e.Get("style").Call("setProperty", "grid-template-areas", areasStr)
+	return e
+}
+
+func (e Element) GridArea(area string) Element {
+	e.Get("style").Call("setProperty", "grid-area", area)
+	return e
+}
+
+func (e Element) Height(height string) Element {
+	e.Get("style").Call("setProperty", "height", height)
+	return e
+}
+
+func (e Element) MinHeight(height string) Element {
+	e.Get("style").Call("setProperty", "min-height", height)
+	return e
+}
+
+func (e Element) Color(color string) Element {
+	e.Get("style").Call("setProperty", "color", color)
+	return e
+}
+
+func (e Element) Width(width string) Element {
+	e.Get("style").Call("setProperty", "width", width)
+	return e
+}
+
+func (e Element) BackgroundColor(color string) Element {
+	e.Get("style").Call("setProperty", "background-color", color)
+	return e
+}
+
+func (e Element) GridRow(row string) Element {
+	e.Get("style").Call("setProperty", "grid-row", row)
+	return e
+}
+
+func (e Element) GridColumn(column string) Element {
+	e.Get("style").Call("setProperty", "grid-column", column)
+	return e
+}
+
 func (e Element) Attr(name, value string) Element {
 	e.Call("setAttribute", name, value)
 	return e
@@ -68,6 +144,9 @@ func MountFunc(fn func(rt *Runtime) Element) {
 	window := js.Global()
 	doc := window.Get("document")
 	body := doc.Get("body")
+
+	// set body margin to 0, todo move this to a css zeroing file
+	body.Get("style").Call("setProperty", "margin", "0")
 
 	rt := NewRuntime()
 
