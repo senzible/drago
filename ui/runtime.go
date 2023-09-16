@@ -1,4 +1,4 @@
-package drago
+package ui
 
 type Runtime struct {
 	//slice of signal values

@@ -117,39 +117,10 @@ func (e Element) Child(child Element) Element {
 	return e
 }
 
-func (e Element) Dyn_text(rt *Runtime, fn func() js.Value) Element {
-	window := js.Global()
-	doc := window.Get("document")
-	textNode := doc.Call("createTextNode", "")
-	e.Call("appendChild", textNode)
-
-	rt.NewEffect(func() {
-		value := fn()
-		textNode.Set("textContent", value)
-	})
-
-	return e
-}
-
 func Mount(root Element) {
 	window := js.Global()
 	doc := window.Get("document")
 	body := doc.Get("body")
 
-	body.Call("appendChild", root.Value)
-}
-
-func MountFunc(fn func(rt *Runtime) Element) {
-
-	window := js.Global()
-	doc := window.Get("document")
-	body := doc.Get("body")
-
-	// set body margin to 0, todo move this to a css zeroing file
-	body.Get("style").Call("setProperty", "margin", "0")
-
-	rt := NewRuntime()
-
-	root := fn(rt)
 	body.Call("appendChild", root.Value)
 }

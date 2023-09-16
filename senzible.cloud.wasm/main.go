@@ -1,18 +1,14 @@
 package main
 
 import (
-	"github.com/senzible/drago"
+	"github.com/senzible/drago/ui"
 )
 
 func main() {
 	c := make(chan struct{})
 
-	drago.MountFunc(func(rt *drago.Runtime) drago.Element {
-
-		return drago.NewElement("div").
-			Child(
-				drago.NewElement("img").Attr("src", "/logo-cloud.svg"),
-			)
+	ui.MountFunc(func(rt *ui.Runtime) ui.View {
+		return ui.Image("/logo-cloud.svg")
 	})
 
 	<-c
