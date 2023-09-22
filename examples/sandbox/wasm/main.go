@@ -10,7 +10,7 @@ func main() {
 	ui.MountFunc(func(rt *ui.Runtime) ui.View {
 		count := ui.NewSignal(rt, 0)
 
-		view := ui.HStack(
+		view := ui.HorizontalGroup(
 			ui.Button(func() {
 				count.Set(count.Get() + 1)
 			}, ui.Text("+1")),

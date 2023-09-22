@@ -124,3 +124,33 @@ func Mount(root Element) {
 
 	body.Call("appendChild", root.Value)
 }
+
+func (e Element) Flex() Element {
+	e.Get("style").Call("setProperty", "display", "flex")
+	return e
+}
+
+func (e Element) FlexDirection(direction string) Element {
+	e.Get("style").Call("setProperty", "flex-direction", direction)
+	return e
+}
+
+func (e Element) JustifyContent(justify string) Element {
+	e.Get("style").Call("setProperty", "justify-content", justify)
+	return e
+}
+
+func (e Element) AlignItems(align string) Element {
+	e.Get("style").Call("setProperty", "align-items", align)
+	return e
+}
+
+func (e Element) FlexGrow(grow int) Element {
+	e.Get("style").Call("setProperty", "flex-grow", grow)
+	return e
+}
+
+func (e Element) MaxWidth(width string) Element {
+	e.Get("style").Call("setProperty", "max-width", width)
+	return e
+}
