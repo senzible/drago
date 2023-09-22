@@ -48,9 +48,10 @@ func footer() ui.View {
 					Font(footprintBody),
 			).
 				AlignRight().
+				JustifyContent("flex-end").
 				Gap("16px"),
 		).
-			Gap("48px").
+			Gap("64px").
 			MaxWidth("1200px").
 			Width("100%").
 			Padding("64px"),

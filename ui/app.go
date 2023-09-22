@@ -142,6 +142,11 @@ func (v View) AlignRight() View {
 	return v
 }
 
+func (v View) JustifyContent(justify string) View {
+	v.e.Get("style").Call("setProperty", "justify-content", justify)
+	return v
+}
+
 func (v View) Margin(margin string) View {
 	v.e.Get("style").Call("setProperty", "margin", margin)
 	return v
@@ -189,5 +194,10 @@ func (v View) BorderLeft(border string) View {
 
 func (v View) BorderRight(border string) View {
 	v.e.Get("style").Call("setProperty", "border-right", border)
+	return v
+}
+
+func (v View) TextAlign(align string) View {
+	v.e.Get("style").Call("setProperty", "text-align", align)
 	return v
 }

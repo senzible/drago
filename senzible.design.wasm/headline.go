@@ -19,8 +19,8 @@ func headline() ui.View {
 			ui.Image("headline.svg"),
 			ui.VerticalGroup(
 				ui.Spacer(),
-				ui.Text("Jouw Ideeën, tot Leven Gebracht").Font(header1).Color("#505253"),
-				ui.Text("Productontwikkeling van Concept tot Creatie").Font(bodyLarge).Color("#373839"),
+				ui.Text("Jouw Ideeën, tot Leven Gebracht").Font(header1).Color("#505253").TextAlign("center"),
+				ui.Text("Productontwikkeling van Concept tot Creatie").Font(bodyLarge).Color("#373839").TextAlign("center"),
 				ui.Spacer(),
 			).AlignCenter().Gap("16px"),
 		).

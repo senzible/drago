@@ -14,11 +14,13 @@ func header() ui.View {
 				ui.Text("Contact"),
 			),
 		).
+			Padding("12px").
 			MaxWidth("1200px").
 			Width("100%").
-			Height("96px").
-			SpaceBetween().AlignCenter(),
+			SpaceBetween().
+			AlignCenter(),
 		ui.Spacer(),
-	)
+	).
+		Height("96px")
 
 }
