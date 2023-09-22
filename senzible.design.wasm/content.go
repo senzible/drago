@@ -21,5 +21,5 @@ func content() ui.View {
 			MaxWidth("800px").
 			Padding("48px").Gap("24px"),
 		ui.Spacer(),
-	)
+	).Background("#fcfcfc")
 }

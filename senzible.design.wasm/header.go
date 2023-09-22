@@ -21,6 +21,6 @@ func header() ui.View {
 			AlignCenter(),
 		ui.Spacer(),
 	).
-		Height("96px")
+		Height("96px").Background("#fcfcfc")
 
 }
