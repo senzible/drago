@@ -137,6 +137,11 @@ func (v View) AlignCenter() View {
 	return v
 }
 
+func (v View) AlignRight() View {
+	v.e.Get("style").Call("setProperty", "align-items", "flex-end")
+	return v
+}
+
 func (v View) Margin(margin string) View {
 	v.e.Get("style").Call("setProperty", "margin", margin)
 	return v
