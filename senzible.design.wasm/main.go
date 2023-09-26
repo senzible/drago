@@ -12,7 +12,7 @@ func main() {
 			header(),
 			headline(),
 			content(),
-			ui.Spacer(),
+			ui.Spacer().Background("fcfcfc"),
 			footer(),
 		).
 			MinHeight("100vh"),

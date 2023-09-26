@@ -23,12 +23,13 @@ func (v View) Child(child View) View {
 }
 
 func Text(text string) View {
-	v := View{element.NewTextNode(text)}
+	v := View{element.NewElement("p")}
+	v.e.Set("textContent", text)
 	return v
 }
 
 func TextFromFunction(fn func() string) View {
-	textNode := element.NewTextNode("")
+	textNode := element.NewElement("p")
 
 	reactive.NewEffect(func() {
 		value := fn()
