@@ -1,4 +1,4 @@
-package drago
+package element
 
 import (
 	"syscall/js"
@@ -13,6 +13,13 @@ func NewElement(tag string) Element {
 	doc := window.Get("document")
 	e := doc.Call("createElement", tag)
 	return Element{e}
+}
+
+func NewTextNode(text string) Element {
+	window := js.Global()
+	doc := window.Get("document")
+	textNode := doc.Call("createTextNode", text)
+	return Element{textNode}
 }
 
 func (e Element) On(event string, fn func()) Element {

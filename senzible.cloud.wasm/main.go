@@ -7,9 +7,9 @@ import (
 func main() {
 	c := make(chan struct{})
 
-	ui.MountFunc(func(rt *ui.Runtime) ui.View {
-		return ui.Image("/logo-cloud.svg")
-	})
+	ui.NewApp(
+		ui.Image("/logo-cloud.svg"),
+	)
 
 	<-c
 }
