@@ -22,7 +22,7 @@ func (v View) Child(child View) View {
 	return v
 }
 
-func Text(text string) View {
+func TextFromString(text string) View {
 	v := View{element.NewElement("p")}
 	v.e.Set("textContent", text)
 	return v
