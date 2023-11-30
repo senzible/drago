@@ -9,10 +9,10 @@ func header() ui.View {
 			ui.Image("/logo-design.svg").Height("40px"),
 			ui.Spacer(),
 			ui.HorizontalGroup(
-				ui.Text("Producten"),
-				ui.Text("Over Ons"),
-				ui.Text("Contact"),
-			),
+				ui.TextFromString("Producten"),
+				ui.TextFromString("Over Ons"),
+				ui.TextFromString("Contact"),
+			).Gap("24px"),
 		).
 			Padding("12px").
 			MaxWidth("1200px").

@@ -13,49 +13,52 @@ var footprintHeader = ui.NewFont().
 	Weight("800")
 
 func footer() ui.View {
-	return ui.HorizontalGroup(
-		ui.Spacer(),
+	return ui.VerticalGroup(
 		ui.HorizontalGroup(
-			ui.VerticalGroup(
-				ui.VerticalGroup(
-					ui.Text("Senzible Cloud").Font(footprintHeader).Color("#ffffff"),
-					ui.Text("Begeleiding bij Cloud Migraties en Architectuur").Font(footprintBody).Color("#ffffff"),
-				),
-				ui.VerticalGroup(
-					ui.Text("Senzible Design").Font(footprintHeader).Color("#ffffff"),
-					ui.Text("Productontwikkeling van Concept tot Creatie").Font(footprintBody).Color("#ffffff"),
-				), ui.VerticalGroup(
-					ui.Text("Senzible Tech").Font(footprintHeader).Color("#ffffff"),
-					ui.Text("Deskundige Hulp bij Softwareontwikkeling").Font(footprintBody).Color("#ffffff"),
-				),
-			).Gap("24px"),
-			ui.VerticalGroup(
-				ui.VerticalGroup(
-					ui.Text("Neem Contact Op").Font(footprintHeader).Color("#ffffff"),
-					ui.Text("hugo@senzible.design").Font(footprintBody).Color("#ffffff"),
-					ui.Text("06 10 35 26 26").Font(footprintBody).Color("#ffffff"),
-				).Gap("8px"),
-				ui.VerticalGroup(
-					ui.Text("Volg Ons").Font(footprintHeader).Color("#ffffff"),
-					ui.Text("Linkedin").Font(footprintBody).Color("#ffffff"),
-				).Gap("8px"),
-			).Gap("24px"),
 			ui.Spacer(),
-			ui.VerticalGroup(
-				ui.Image("/logo-design-white.svg").Height("40px"),
-				ui.Text("Jouw Ideeën, tot Leven Gebracht").
-					Foreground("#ffffff").
-					Font(footprintBody),
+			ui.HorizontalGroup(
+
+				ui.VerticalGroup(
+					ui.TextFromString("Neem Contact Op").Font(footprintHeader).Color("#eaebeb"),
+					ui.TextFromString("hugo@senzible.design").Font(footprintBody).Color("#eaebeb"),
+					ui.TextFromString("06 10 35 26 26").Font(footprintBody).Color("#eaebeb"),
+				).Gap("8px"),
+
+				ui.VerticalGroup(
+					ui.TextFromString("Volg Ons").Font(footprintHeader).Color("#eaebeb"),
+					ui.TextFromString("Linkedin").Font(footprintBody).Color("#eaebeb"),
+					ui.TextFromString("Instagram").Font(footprintBody).Color("#eaebeb"),
+				).Gap("8px"),
+
+				ui.Spacer(),
+
+				ui.VerticalGroup(
+					ui.Image("/logo-design-white.svg").Height("40px"),
+					ui.TextFromString("Jouw Ideeën, tot Leven Gebracht").
+						Foreground("#fcfcfc").
+						Font(footprintBody),
+				).
+					AlignRight().
+					JustifyContent("flex-end").
+					Gap("16px"),
 			).
-				AlignRight().
-				JustifyContent("flex-end").
-				Gap("16px"),
-		).
-			Gap("64px").
-			MaxWidth("1200px").
-			Width("100%").
-			Padding("64px"),
-		ui.Spacer(),
-	).Background("#373839")
+				Gap("96px").
+				MaxWidth("900px").
+				Width("100%").
+				Padding("48px"),
+			ui.Spacer(),
+		).Background("#373839"),
+		ui.HorizontalGroup(
+			ui.Spacer(),
+			ui.HorizontalGroup(
+				ui.TextFromString("© 2024 Senzible Design").Font(footprintBody).
+					Color("#eaebeb"),
+			).
+				Padding("8px").
+				MaxWidth("900px").
+				Width("100%"),
+			ui.Spacer(),
+		).Background("#2a2b2c"),
+	)
 
 }

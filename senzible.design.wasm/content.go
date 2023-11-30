@@ -11,8 +11,8 @@ func content() ui.View {
 	return ui.HorizontalGroup(
 		ui.Spacer(),
 		ui.VerticalGroup(
-			ui.Text("Over Senzible Design").Font(header2),
-			ui.Text("In een wereld waar alles mogelijk is, streeft Senzible Design ernaar om jouw visie tot leven te brengen. "+
+			ui.TextFromString("Over Senzible Design").Font(header2),
+			ui.TextFromString("In een wereld waar alles mogelijk is, streeft Senzible Design ernaar om jouw visie tot leven te brengen. "+
 				"Of je nu een uniek productidee hebt dat je wilt realiseren of een specifiek stuk wilt ontwerpen, wij combineren "+
 				"de nieuwste technologieën in 3D-printen met traditionele houtbewerkingstechnieken om je droom te verwezenlijken. "+
 				"Wij geloven in een combinatie van ambacht en technologie, en dat is precies wat je krijgt bij Senzible Design.").Font(bodyLarge),
