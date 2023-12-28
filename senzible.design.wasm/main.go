@@ -8,15 +8,19 @@ func main() {
 	c := make(chan struct{})
 
 	ui.NewApp(
-		ui.VerticalGroup(
-			header(),
-			headline(),
-			content(),
-			ui.Spacer().Background("fcfcfc"),
-			footer(),
-		).
-			MinHeight("100vh"),
+		ui.Image("/logo-tech.svg"),
 	)
+
+	// ui.NewApp(
+	// 	ui.VerticalGroup(
+	// 		header(),
+	// 		headline(),
+	// 		content(),
+	// 		ui.Spacer().Background("fcfcfc"),
+	// 		footer(),
+	// 	).
+	// 		MinHeight("100vh"),
+	// )
 
 	<-c
 }
