@@ -8,7 +8,7 @@ func main() {
 	c := make(chan struct{})
 
 	ui.NewApp(
-		ui.Image("/logo-tech.svg"),
+		ui.Image("/logo-design.svg"),
 	)
 
 	// ui.NewApp(
