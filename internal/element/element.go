@@ -8,16 +8,20 @@ type Element struct {
 	js.Value
 }
 
-func NewElement(tag string) Element {
+func Document() Element {
 	window := js.Global()
 	doc := window.Get("document")
+	return Element{doc}
+}
+
+func NewElement(tag string) Element {
+	doc := Document()
 	e := doc.Call("createElement", tag)
 	return Element{e}
 }
 
 func NewTextNode(text string) Element {
-	window := js.Global()
-	doc := window.Get("document")
+	doc := Document()
 	textNode := doc.Call("createTextNode", text)
 	return Element{textNode}
 }
@@ -112,8 +116,7 @@ func (e Element) Attr(name, value string) Element {
 }
 
 func (e Element) Text(text string) Element {
-	window := js.Global()
-	doc := window.Get("document")
+	doc := Document()
 	textNode := doc.Call("createTextNode", text)
 	e.Call("appendChild", textNode)
 	return e
@@ -125,8 +128,7 @@ func (e Element) Child(child Element) Element {
 }
 
 func Mount(root Element) {
-	window := js.Global()
-	doc := window.Get("document")
+	doc := Document()
 	body := doc.Get("body")
 
 	body.Call("appendChild", root.Value)
