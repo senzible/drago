@@ -5,16 +5,15 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/NYTimes/gziphandler"
+	"github.com/senzible/drago/host"
 )
 
 func main() {
-	port := flag.String("p", "80", "port to serve on")
+	port := flag.String("p", "8080", "port to serve on")
 	dir := flag.String("d", ".", "the directory of static file to host")
 	flag.Parse()
 
-	http.Handle("/", http.FileServer(http.Dir(*dir)))
 	log.Printf("Serving UI %s on HTTP port: %s\n", *dir, *port)
-	log.Fatal(http.ListenAndServe(":"+*port,
-		gziphandler.GzipHandler(http.FileServer(http.Dir("")))))
+	spaHandler := host.SpaHandler(*dir, "index.html")
+	log.Fatal(http.ListenAndServe(":"+*port, spaHandler))
 }
